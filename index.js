@@ -25,18 +25,24 @@ const saveLuaFileData = (namespace, luaFileData) => {
 }
 
 const getLuaType = type => {
-    switch (type.toLowerCase()) {
+    let adjustedType = type.toLowerCase().replace(/(const )|(\*)/gi, '')
+    switch (adjustedType) {
         case 'int':
         case 'long':
         case 'float':
             return 'number'
-        case 'char*':
+        case 'char':
             return 'string'
         case 'bool':
             return 'boolean'
         case 'any':
             return 'any'
+        case 'void':
+            return 'void'
+        case 'vector3':
+            return 'vector3'
         default:
+            // console.log(adjustedType)
             return type
     }
 }

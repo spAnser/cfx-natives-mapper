@@ -1,0 +1,11 @@
+{
+  "name": "cfx-natives-mapper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "change-case": "^4.1.0",
+    "request": "^2.88.0",
+    "rimraf": "^3.0.0"
+  }
+}

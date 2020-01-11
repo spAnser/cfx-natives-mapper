@@ -1,5 +1,5 @@
-// const nativesJsonUrl = 'https://raw.githubusercontent.com/gottfriedleibniz/rdr3-nativedb-codegen/master/out/natives.json'
-const nativesJsonUrl = 'https://raw.githubusercontent.com/alloc8or/rdr3-nativedb-data/master/natives.json'
+const nativesJsonUrl = 'https://raw.githubusercontent.com/gottfriedleibniz/rdr3-nativedb-codegen/master/out/natives.json'
+// const nativesJsonUrl = 'https://raw.githubusercontent.com/alloc8or/rdr3-nativedb-data/master/natives.json'
 
 const fs = require('fs')
 const rimraf = require('rimraf')
@@ -52,7 +52,7 @@ const run = () => {
     Object.keys(NATIVES).forEach(namespace => {
         let luaFileData = {}
         // console.log(namespace)
-        Object.keys(NATIVES[namespace]).forEach(hash => {
+        Object.keys(NATIVES[namespace]).sort().forEach(hash => {
             let data = NATIVES[namespace][hash]
             let name = `N_${hash.toLowerCase()}`
             if ('name' in data) {

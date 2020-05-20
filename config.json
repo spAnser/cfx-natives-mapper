@@ -1,6 +1,11 @@
 {
     "natives": {
-        "gta5": "https://runtime.fivem.net/doc/natives.json",
-        "rdr3": "https://raw.githubusercontent.com/gottfriedleibniz/rdr3-nativedb-codegen/master/out/natives.json"
+        "gta5": {
+            "base": "https://runtime.fivem.net/doc/natives.json",
+            "cfx": "https://runtime.fivem.net/doc/natives_cfx.json"
+        },
+        "rdr3": {
+            "base": "https://raw.githubusercontent.com/gottfriedleibniz/rdr3-nativedb-codegen/master/out/natives.json"
+        }
     }
 }

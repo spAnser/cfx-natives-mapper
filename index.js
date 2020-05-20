@@ -46,8 +46,8 @@ const getLuaType = (type) => {
 	}
 };
 
-const run = (game) => {
-	const NATIVES = require(`./build/${game}-natives.json`);
+const run = (game, source) => {
+	const NATIVES = require(`./build/${game}-${source}-natives.json`);
 	Object.keys(NATIVES).forEach((namespace) => {
 		let luaFileData = {};
 		// console.log(namespace)
@@ -103,18 +103,20 @@ const run = (game) => {
 	});
 };
 
-function CreateGameDocFiles(game, natives) {
+function CreateGameDocFiles(game, sources) {
 	rimraf.sync(`./build/${game}/[_docs]`);
 	fs.mkdirSync(`./build/${game}/[_docs]`, { recursive: true });
+	
+	const request = require("request");
+	
+	for (let [source, natives] of Object.entries(sources)) {
+		if (!fs.existsSync(`./build/${game}-${source}-natives.json`)) {
+			const stream = request(natives).pipe(fs.createWriteStream(`./build/${game}-${source}-natives.json`));
 
-	if (fs.existsSync(`./build/${game}-natives.json`)) {
-		run(game);
-	} else {
-		const request = require("request");
-
-		request(natives, () => {
-			run(game);
-		}).pipe(fs.createWriteStream(`./build/${game}-natives.json`));
+			stream.on("finish", () => { run(game, source) })
+		} else {
+			run(game, source)
+		}
 	}
 }
 

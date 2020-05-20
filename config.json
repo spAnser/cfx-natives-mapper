@@ -1,0 +1,6 @@
+{
+    "natives": {
+        "gta5": "https://runtime.fivem.net/doc/natives.json",
+        "rdr3": "https://raw.githubusercontent.com/gottfriedleibniz/rdr3-nativedb-codegen/master/out/natives.json"
+    }
+}
